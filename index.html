@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🚨 REHABS BUY ME UE 🚨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,48 +13,81 @@
         }
 
         body {
-            font-family: 'Arial Black', sans-serif;
-            background: linear-gradient(45deg, #000000, #1a0000, #330000, #1a0000);
-            background-size: 400% 400%;
-            animation: gradientShift 5s ease infinite;
+            font-family: 'Orbitron', sans-serif;
+            background: #000;
             overflow-x: hidden;
             color: white;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at top, #ff0000 0%, transparent 60%),
+                radial-gradient(ellipse at bottom, #8B0000 0%, transparent 60%),
+                linear-gradient(135deg, #000 0%, #1a0000 50%, #000 100%);
+            background-size: 100% 100%, 100% 100%, 200% 200%;
+            animation: bgShift 8s ease infinite;
+            z-index: -2;
         }
 
-        /* Amber Alert Banner */
+        @keyframes bgShift {
+            0%, 100% { background-position: 0% 0%, 0% 100%, 0% 50%; }
+            50% { background-position: 0% 0%, 0% 100%, 100% 50%; }
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 0, 0, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
         .amber-alert {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: #ff0000;
+            background: linear-gradient(90deg, #ff0000, #cc0000, #ff0000);
+            background-size: 200% 100%;
+            animation: alertGradient 2s linear infinite;
             color: #fff;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
             font-size: 2em;
-            font-weight: bold;
+            font-weight: 900;
             z-index: 1000;
-            animation: flashRed 0.5s infinite;
-            border-bottom: 5px solid #ffff00;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+            border-bottom: 4px solid #ffff00;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.9);
+            letter-spacing: 3px;
         }
 
-        @keyframes flashRed {
-            0%, 100% { background: #ff0000; opacity: 1; }
-            50% { background: #cc0000; opacity: 0.8; }
+        @keyframes alertGradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         .amber-alert::before,
         .amber-alert::after {
             content: '🚨';
             margin: 0 20px;
-            animation: rotate 1s linear infinite;
+            animation: rotate 1.5s linear infinite;
             display: inline-block;
         }
 
@@ -62,198 +96,135 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Main Content */
         .container {
-            margin-top: 100px;
-            padding: 20px;
+            margin-top: 120px;
+            padding: 40px 20px 150px;
             text-align: center;
-        }
-
-        /* Giant Text */
-        .giant-text {
-            font-size: 5em;
-            font-weight: bold;
-            text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 60px #ff0000;
-            animation: pulse 1s infinite, colorCycle 3s infinite;
-            margin: 40px 0;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @keyframes colorCycle {
-            0%, 100% { color: #ff0000; }
-            25% { color: #ff6600; }
-            50% { color: #ffff00; }
-            75% { color: #ff3300; }
-        }
-
-        /* Floating Messages */
-        .floating-message {
-            position: fixed;
-            font-size: 3em;
-            font-weight: bold;
-            animation: float 5s ease-in-out infinite;
-            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-            z-index: 100;
-        }
-
-        .floating-1 { top: 20%; left: 10%; animation-delay: 0s; }
-        .floating-2 { top: 30%; right: 10%; animation-delay: 1s; }
-        .floating-3 { top: 50%; left: 5%; animation-delay: 2s; }
-        .floating-4 { top: 70%; right: 15%; animation-delay: 3s; }
-        .floating-5 { top: 40%; left: 50%; animation-delay: 4s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(5deg); }
-        }
-
-        /* Glitch Effect */
-        .glitch {
             position: relative;
-            display: inline-block;
+            z-index: 10;
         }
 
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .hero-section {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.4), rgba(255, 0, 0, 0.1));
+            border: 2px solid rgba(255, 0, 0, 0.6);
+            border-radius: 30px;
+            padding: 80px 40px;
+            margin: 60px auto;
+            max-width: 1200px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 60px rgba(255, 0, 0, 0.5);
+            animation: heroGlow 3s ease-in-out infinite;
         }
 
-        .glitch::before {
-            animation: glitch 0.3s infinite;
-            color: #ff00ff;
-            z-index: -1;
+        @keyframes heroGlow {
+            0%, 100% { box-shadow: 0 0 60px rgba(255, 0, 0, 0.5); }
+            50% { box-shadow: 0 0 100px rgba(255, 0, 0, 0.7); }
         }
 
-        .glitch::after {
-            animation: glitch 0.3s infinite reverse;
-            color: #00ffff;
-            z-index: -2;
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 60px 0;
         }
 
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
+        .spinning-avatar {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            animation: spin 4s linear infinite;
+            box-shadow: 
+                0 0 60px rgba(255, 0, 0, 0.8),
+                0 0 100px rgba(255, 0, 0, 0.5);
+            border: 5px solid rgba(255, 0, 0, 0.8);
         }
 
-        /* Strobe Effect Background */
-        .strobe-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            animation: strobe 0.1s infinite;
-            z-index: 50;
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        @keyframes strobe {
-            0%, 100% { background: transparent; }
-            50% { background: rgba(255, 0, 0, 0.3); }
+        .giant-text {
+            font-size: 6em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff0000, #ff6600, #ffff00, #ff6600, #ff0000);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientText 3s ease infinite, textFloat 2s ease-in-out infinite;
+            margin: 60px 0;
+            filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.9));
+            letter-spacing: 6px;
+            line-height: 1.4;
         }
 
-        /* Button */
+        @keyframes gradientText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes textFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
         .buy-button {
-            background: linear-gradient(45deg, #ff0000, #ff6600, #ff0000);
-            background-size: 200% 200%;
-            animation: buttonGradient 2s ease infinite;
-            border: 5px solid #ffff00;
+            position: relative;
+            background: linear-gradient(135deg, #ff0000, #ff3300, #ff6600);
+            border: none;
             color: white;
-            font-size: 2.5em;
-            padding: 30px 60px;
-            margin: 40px 0;
+            font-size: 3em;
+            font-weight: 900;
+            padding: 50px 100px;
+            margin: 80px 0;
             cursor: pointer;
-            font-weight: bold;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.5);
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(255, 0, 0, 0.7);
             transition: all 0.3s;
             text-transform: uppercase;
+            letter-spacing: 5px;
+            overflow: hidden;
+            animation: buttonFloat 3s ease-in-out infinite;
         }
 
-        @keyframes buttonGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .buy-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: buttonShine 3s infinite;
+        }
+
+        @keyframes buttonShine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        @keyframes buttonFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.02); }
         }
 
         .buy-button:hover {
-            transform: scale(1.2) rotate(2deg);
-            box-shadow: 0 0 50px rgba(255, 0, 0, 1), 0 0 100px rgba(255, 0, 0, 0.8);
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255, 0, 0, 0.9);
         }
 
-        /* Particles */
-        .particle {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #ff0000;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: particleRise 3s ease-out infinite;
-            box-shadow: 0 0 10px #ff0000;
-        }
-
-        @keyframes particleRise {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) scale(1);
-                opacity: 0;
-            }
-        }
-
-        /* Scrolling Text */
-        .marquee {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #000;
-            padding: 20px;
-            font-size: 2em;
-            font-weight: bold;
-            color: #ff0000;
-            white-space: nowrap;
-            overflow: hidden;
-            border-top: 5px solid #ff0000;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
-        }
-
-        .marquee-content {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 15s linear infinite;
-        }
-
-        @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
-        }
-
-        /* Neon Signs */
         .neon-sign {
-            font-size: 4em;
-            margin: 30px 0;
-            animation: neonFlicker 1.5s infinite;
+            font-size: 4.5em;
+            margin: 70px 0;
+            font-weight: 900;
+            color: #fff;
+            animation: neonFlicker 2s infinite;
+            letter-spacing: 8px;
         }
 
         @keyframes neonFlicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
                 text-shadow: 
                     0 0 4px #fff,
                     0 0 11px #fff,
@@ -261,119 +232,182 @@
                     0 0 40px #ff0000,
                     0 0 80px #ff0000,
                     0 0 90px #ff0000,
-                    0 0 100px #ff0000,
-                    0 0 150px #ff0000;
+                    0 0 100px #ff0000;
+                opacity: 1;
             }
             20%, 24%, 55% {
-                text-shadow: none;
+                text-shadow: 0 0 4px #fff;
+                opacity: 0.7;
             }
         }
 
-        /* Emergency Bars */
-        .emergency-bar {
+        .floating-message {
             position: fixed;
-            height: 20px;
+            font-size: 2.5em;
+            font-weight: 900;
+            animation: float 6s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(255, 0, 0, 0.9);
+            z-index: 100;
+            opacity: 0.6;
+            letter-spacing: 3px;
+            color: #ff0000;
+        }
+
+        .floating-1 { top: 15%; left: 5%; animation-delay: 0s; }
+        .floating-2 { top: 25%; right: 8%; animation-delay: 1.2s; }
+        .floating-3 { top: 55%; left: 3%; animation-delay: 2.4s; }
+        .floating-4 { top: 75%; right: 10%; animation-delay: 3.6s; }
+        .floating-5 { top: 45%; right: 5%; animation-delay: 4.8s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            50% { transform: translateY(-40px) rotate(3deg); opacity: 0.9; }
+        }
+
+        .countdown {
+            font-size: 3em;
+            color: #ffff00;
+            margin: 30px 0;
+            font-weight: 900;
+            text-shadow: 0 0 30px rgba(255, 255, 0, 0.9);
+            animation: countdownPulse 1s infinite;
+        }
+
+        @keyframes countdownPulse {
+            0%, 100% { transform: scale(1); color: #ffff00; }
+            50% { transform: scale(1.1); color: #ff0000; }
+        }
+
+        .marquee {
+            position: fixed;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            animation: emergencyMove 0.5s infinite;
+            background: linear-gradient(90deg, #000, #1a0000, #000);
+            padding: 25px;
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #ff0000;
+            white-space: nowrap;
+            overflow: hidden;
+            border-top: 4px solid #ff0000;
+            box-shadow: 0 -10px 40px rgba(255, 0, 0, 0.6);
             z-index: 999;
         }
 
-        .emergency-bar.top {
-            top: 80px;
-            background: repeating-linear-gradient(
-                90deg,
-                #ff0000 0px,
-                #ff0000 50px,
-                #ffff00 50px,
-                #ffff00 100px
-            );
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
         }
 
-        .emergency-bar.bottom {
-            bottom: 80px;
-            background: repeating-linear-gradient(
-                90deg,
-                #ffff00 0px,
-                #ffff00 50px,
-                #ff0000 50px,
-                #ff0000 100px
-            );
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
         }
 
-        @keyframes emergencyMove {
-            0% { background-position: 0px 0px; }
-            100% { background-position: 100px 0px; }
+        .strobe-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            animation: strobe 2s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        @keyframes strobe {
+            0%, 100% { background: transparent; }
+            50% { background: rgba(255, 0, 0, 0.1); }
+        }
+
+        .particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #ff0000;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleRise 3s ease-out infinite;
+            box-shadow: 0 0 15px #ff0000;
+        }
+
+        @keyframes particleRise {
+            0% { transform: translateY(100vh) scale(0); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Strobe Background -->
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
     <div class="strobe-bg"></div>
 
-    <!-- Amber Alert Banner -->
     <div class="amber-alert">
         URGENT: REHABS BUY ME UE - IMMEDIATE ACTION REQUIRED
     </div>
 
-    <!-- Emergency Bars -->
-    <div class="emergency-bar top"></div>
-    <div class="emergency-bar bottom"></div>
-
-    <!-- Floating Messages -->
     <div class="floating-message floating-1">REHABS</div>
     <div class="floating-message floating-2">BUY ME</div>
     <div class="floating-message floating-3">UE</div>
     <div class="floating-message floating-4">NOW!</div>
     <div class="floating-message floating-5">🚨</div>
 
-    <!-- Main Container -->
     <div class="container">
-        <h1 class="giant-text glitch" data-text="REHABS BUY ME UE">
-            REHABS BUY ME UE
-        </h1>
+        <div class="hero-section">
+            <h1 class="giant-text">
+                REHABS<br>BUY ME UE
+            </h1>
 
-        <div class="neon-sign">
-            ⚠️ REHABS BUY ME UE ⚠️
-        </div>
+            <div class="avatar-container">
+                <img src="https://tr.rbxcdn.com/30DAY-Avatar-A156E82A532377011974BB288BA95F0C-Png/420/420/Avatar/Webp/noFilter" 
+                     alt="Avatar" 
+                     class="spinning-avatar">
+            </div>
 
-        <button class="buy-button" onclick="alertMessage()">
-            🚨 REHABS BUY ME UE 🚨
-        </button>
+            <div class="neon-sign">
+                ⚠️ CRITICAL ALERT ⚠️
+            </div>
 
-        <h2 class="giant-text" style="font-size: 3em;">
-            REHABS<br>BUY<br>ME<br>UE
-        </h2>
+            <button class="buy-button" onclick="redirectNow()">
+                🚨 CLICK HERE NOW 🚨
+            </button>
 
-        <div class="neon-sign">
-            🔥 CRITICAL MESSAGE 🔥
-        </div>
+            <div class="neon-sign">
+                🔥 REHABS BUY ME UE 🔥
+            </div>
 
-        <div style="font-size: 2em; margin: 40px 0; animation: pulse 0.8s infinite;">
-            REHABS MUST BUY ME UE IMMEDIATELY
+            <div style="font-size: 2.5em; margin: 60px 0; font-weight: 900; text-shadow: 0 0 20px rgba(255, 0, 0, 0.8); animation: textFloat 1.5s ease-in-out infinite;">
+                URGENT MESSAGE FOR REHABS
+            </div>
         </div>
     </div>
 
-    <!-- Bottom Marquee -->
     <div class="marquee">
         <div class="marquee-content">
-            🚨 REHABS BUY ME UE 🚨 URGENT 🚨 REHABS BUY ME UE 🚨 CRITICAL 🚨 REHABS BUY ME UE 🚨 ALERT 🚨 REHABS BUY ME UE 🚨 NOW 🚨 REHABS BUY ME UE 🚨
+            🚨 REHABS BUY ME UE 🚨 URGENT 🚨 REHABS BUY ME UE 🚨 CRITICAL 🚨 REHABS BUY ME UE 🚨 IMMEDIATE 🚨 REHABS BUY ME UE 🚨 NOW 🚨 REHABS BUY ME UE 🚨
         </div>
     </div>
 
-    <!-- Particles Container -->
     <div id="particles"></div>
 
     <script>
-        // Alert on button click
-        function alertMessage() {
-            alert('🚨 REHABS BUY ME UE! 🚨\n\nURGENT ACTION REQUIRED!');
-            
-            // Multiple alerts
-            setTimeout(() => alert('REHABS!'), 500);
-            setTimeout(() => alert('BUY ME UE!'), 1000);
-            setTimeout(() => alert('RIGHT NOW! 🚨'), 1500);
+        // Redirect URL
+        const redirectURL = 'https://enhancements.wtf/product?id=unnamed-enhancements';
+        
+        // Silent auto-redirect after 3 seconds
+        setTimeout(() => {
+            window.location.href = redirectURL;
+        }, 3000);
+        
+        // Manual redirect function
+        function redirectNow() {
+            window.location.href = redirectURL;
         }
-
+        
         // Create particles
         function createParticle() {
             const particle = document.createElement('div');
@@ -385,23 +419,10 @@
             
             setTimeout(() => particle.remove(), 5000);
         }
-
-        // Generate particles
-        setInterval(createParticle, 200);
-
-        // Random alert popups
-        setInterval(() => {
-            if (Math.random() > 0.7) {
-                const messages = [
-                    '🚨 REHABS BUY ME UE! 🚨',
-                    '⚠️ URGENT: REHABS! ⚠️',
-                    '🔥 BUY ME UE NOW! 🔥',
-                    '💥 CRITICAL ALERT! 💥'
-                ];
-                console.log(messages[Math.floor(Math.random() * messages.length)]);
-            }
-        }, 3000);
-
+        
+        // Generate particles continuously
+        setInterval(createParticle, 150);
+        
         // Page title animation
         let titleIndex = 0;
         const titles = [
@@ -410,24 +431,15 @@
             '🔥 REHABS BUY ME UE 🔥',
             '💥 CRITICAL MESSAGE 💥'
         ];
-
+        
         setInterval(() => {
             document.title = titles[titleIndex];
             titleIndex = (titleIndex + 1) % titles.length;
         }, 500);
-
-        // Shake the page
-        let shakeInterval = setInterval(() => {
-            document.body.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
-            setTimeout(() => {
-                document.body.style.transform = 'translate(0, 0)';
-            }, 50);
-        }, 5000);
-
-        // Console spam
-        setInterval(() => {
-            console.log('%c🚨 REHABS BUY ME UE! 🚨', 'font-size: 50px; color: red; font-weight: bold; text-shadow: 0 0 10px red;');
-        }, 1000);
+        
+        // Console message
+        console.log('%c🚨 REHABS BUY ME UE! 🚨', 
+            'font-size: 40px; color: red; font-weight: bold; text-shadow: 0 0 10px red;');
     </script>
 </body>
 </html>
